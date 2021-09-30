@@ -7,6 +7,7 @@ public class DialogueTrigger : MonoBehaviour
     public bool playerInRange;
     public Dialogue dialogue;
     public DialogueManager dialogueManager;
+    public GameObject interactable;
 
     void Update()
     {
@@ -22,6 +23,7 @@ public class DialogueTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            interactable.SetActive(true);
         }
         
     }
@@ -29,6 +31,7 @@ public class DialogueTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         playerInRange = false;
+        interactable.SetActive(false);
         if (dialogueManager.animator.GetBool("isOpen"))
         {
             dialogueManager.EndDialog();
