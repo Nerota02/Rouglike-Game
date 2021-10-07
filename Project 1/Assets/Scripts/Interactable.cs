@@ -3,30 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueTrigger : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
     public bool playerInRange;
-    public Dialogue dialogue;
-    public DialogueManager dialogueManager;
+    public SpriteRenderer sprite1;
+    public Sprite sprite2;
     public GameObject interactable;
-    public Sprite sprite1;
-    public Image UIimage;
-    
+    public DialogueManager dialogueManager;
 
+    private void Start()
+    {
+        sprite1 = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
             SetSprite();
-            TriggerDialogue();
-            if (gameObject == false)
+            if (gameObject.CompareTag("Chest"))
             {
+                interactable.SetActive(false);
+                Destroy(gameObject, 3f);
                 dialogueManager.EndDialog();
+
+            }
+            else if(gameObject.CompareTag("Door"))
+            {
+                gameObject.layer = 0;
             }
         }
-
-
 
     }
 
@@ -37,27 +43,18 @@ public class DialogueTrigger : MonoBehaviour
             playerInRange = true;
             interactable.SetActive(true);
         }
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         playerInRange = false;
         interactable.SetActive(false);
-        if (dialogueManager.animator.GetBool("isOpen"))
-        {
-            dialogueManager.EndDialog();
-        }
-    }
-
-    public void TriggerDialogue()
-    {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 
     public void SetSprite()
     {
-        UIimage.sprite = sprite1;
+        sprite1.sprite = sprite2;
     }
 
 }
