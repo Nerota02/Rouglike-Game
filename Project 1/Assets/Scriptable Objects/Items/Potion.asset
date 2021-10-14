@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088bdf5881da67f4ea7d630f44d4c68b, type: 3}
+  m_Name: Potion
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8275886985552521272, guid: e621183cfe876c248978307f2957fd7c, type: 3}
+  type: 2
+  description: 'Strange Liquid
+
+
+'
