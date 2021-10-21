@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f661712074d913846b8c4821192b5015, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2482830781327846520, guid: 2d0f18d9b5701804b9f6ba90987dd6ff, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 21300000, guid: 132fc535c7d80fd459b8bdd8bb70e141, type: 3}
   type: 1
   description: A Worn Shield
   atkBonus: 0

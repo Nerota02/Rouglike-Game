@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088bdf5881da67f4ea7d630f44d4c68b, type: 3}
   m_Name: Flower
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7918613048654815650, guid: da719e4d83ed68046a12d186da751d2c, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 21300000, guid: e3a860e77fdb35a42a2c27f896e66236, type: 3}
   type: 2
   description: 'Smells Nice
 
