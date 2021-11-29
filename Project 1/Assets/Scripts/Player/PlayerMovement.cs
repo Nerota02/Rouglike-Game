@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UserInterface;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public MouseItem mouseItem = new MouseItem();
     public Level level;
     public InventoryObject inventory;
     public float moveSpeed = 5f;

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using static UserInterface;
 
 public class DisplayInventory : MonoBehaviour
 {
@@ -125,13 +126,7 @@ public class DisplayInventory : MonoBehaviour
         return new Vector3(X_START + (X_SPACE_BETWEEN_ITEM * (i % NUMBER_OF_COLUMNS)), Y_START + (-Y_SPACE_BETWEEN_ITEMS * (i / NUMBER_OF_COLUMNS)), 0F);
     }
 
-    public class MouseItem
-    {
-        public GameObject obj;
-        public InventorySlot item;
-        public InventorySlot hoverItem;
-        public GameObject hoverObj;
-    }
+
 
 
 }
