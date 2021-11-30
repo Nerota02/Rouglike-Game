@@ -10,6 +10,6 @@ public class EquipmentObject : ItemObject
     //public float defBonus;
     public void Awake()
     {
-        type = ItemType.Equipment;
+        type = ItemType.Chest;
     }
 }
