@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 088bdf5881da67f4ea7d630f44d4c68b, type: 3}
+  m_Script: {fileID: 11500000, guid: 073dd30b52f120547ac412984f4cb343, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  Id: 3
   uiDisplay: {fileID: 21300000, guid: 8eada5251b8a6844baddbd39d6770e4f, type: 3}
-  type: 2
-  description: 'Strange Liquid
-
-
-'
-  buffs: []
+  stackable: 1
+  type: 0
+  description: 
+  data:
+    Name: 
+    Id: 1
+    buffs: []

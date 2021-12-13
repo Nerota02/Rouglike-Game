@@ -6,9 +6,9 @@ using static UserInterface;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public MouseItem mouseItem = new MouseItem();
     public Level level;
     public InventoryObject inventory;
+    public InventoryObject equipment;
     public float moveSpeed = 5f;
     public Transform movePoint;
 
@@ -60,30 +60,36 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             inventory.Save();
+            equipment.Save();
             Debug.Log("Game Saved");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             inventory.Load();
+            equipment.Load();
             Debug.Log("Game Loaded");
         }
 
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        var item = collision.GetComponent<GroundItem>();
+        var item = other.GetComponent<GroundItem>();
         if (item)
         {
-            inventory.AddItem(new Item(item.item), 1);
-            Destroy(collision.gameObject);
+            Item _item = new Item(item.item);
+            if(inventory.AddItem(_item, 1))
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
     private void OnApplicationQuit()
     {
-        inventory.Container.Items = new InventorySlot[24];
+        inventory.Container.Clear();
+        equipment.Container.Clear();
     }
 
 
