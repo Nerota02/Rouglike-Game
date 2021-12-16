@@ -14,8 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savePath: /Invetory.Save
   database: {fileID: 11400000, guid: 94ffea6f3583ba44fbe657e901a8dd73, type: 2}
+  type: 0
   Container:
-    Items:
+    Slots:
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
     - AllowedItems: 
       item:
         Name: 

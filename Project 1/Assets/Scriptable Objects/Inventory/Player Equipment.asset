@@ -12,32 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71b44ee90c453489422f1689d66a3f, type: 3}
   m_Name: Player Equipment
   m_EditorClassIdentifier: 
-  savePath: 
+  savePath: /equipment.save
   database: {fileID: 11400000, guid: 94ffea6f3583ba44fbe657e901a8dd73, type: 2}
+  type: 1
   Container:
-    Items:
-    - AllowedItems: 
+    Slots:
+    - AllowedItems: 01000000
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 06000000
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
     - AllowedItems: 0200000003000000
       item:
-        Name: Shield
-        Id: 2
-        buffs:
-        - attribute: 1
-          value: 4
-          min: 1
-          max: 5
-      amount: 1
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
     - AllowedItems: 0200000003000000
       item:
         Name: 
@@ -47,6 +44,6 @@ MonoBehaviour:
     - AllowedItems: 04000000
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0

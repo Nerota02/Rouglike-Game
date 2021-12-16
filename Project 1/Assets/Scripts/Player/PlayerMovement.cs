@@ -3,21 +3,94 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UserInterface;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Level level;
     public InventoryObject inventory;
     public InventoryObject equipment;
+    public GameObject Panel;
+    public GameObject Panel2;
+    public bool panelIsClosed;
     public float moveSpeed = 5f;
     public Transform movePoint;
 
     public LayerMask whatStopsMovement;
 
+    public Attribute[] attributes;
+
     void Start()
     {
+        panelIsClosed = true;
+
         movePoint.parent = null;
         level = new Level(1, OnLevelUp);
+
+        for (int i = 0; i < attributes.Length; i++)
+        {
+            attributes[i].SetParent(this);
+        }
+        for (int i = 0; i < equipment.GetSlots.Length; i++)
+        {
+            equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
+            equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
+        }
+    }
+
+    public void OnBeforeSlotUpdate(InventorySlot _slot)
+    {
+        if (_slot.ItemObject == null)
+            return;
+        switch (_slot.parent.inventory.type)
+        {
+            case InterfaceType.Inventory:
+                break;
+            case InterfaceType.Equipment:
+                print(string.Concat("Removed ", _slot.ItemObject, " on ", _slot.parent.inventory.type, ", Allowed Items: ", string.Join(", ", _slot.AllowedItems)));
+
+                for (int i = 0; i < _slot.item.buffs.Length; i++)
+                {
+                    for (int j = 0; j < attributes.Length; j++)
+                    {
+                        if (attributes[j].type == _slot.item.buffs[i].attribute)
+                            attributes[j].value.RemoveModifier(_slot.item.buffs[i]);
+                    }
+                }
+
+                break;
+            case InterfaceType.Chest:
+                break;
+            default:
+                break;
+        }
+    }
+    public void OnAfterSlotUpdate(InventorySlot _slot)
+    {
+        if (_slot.ItemObject == null)
+            return;
+        switch (_slot.parent.inventory.type)
+        {
+            case InterfaceType.Inventory:
+                break;
+            case InterfaceType.Equipment:
+                print(string.Concat("Placed ", _slot.ItemObject, " on ", _slot.parent.inventory.type, ", Allowed Items: ", string.Join(", ", _slot.AllowedItems)));
+
+                for (int i = 0; i < _slot.item.buffs.Length; i++)
+                {
+                    for (int j = 0; j < attributes.Length; j++)
+                    {
+                        if (attributes[j].type == _slot.item.buffs[i].attribute)
+                            attributes[j].value.AddModifier(_slot.item.buffs[i]);
+                    }
+                }
+
+                break;
+            case InterfaceType.Chest:
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnLevelUp()
@@ -27,6 +100,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            if(panelIsClosed == true)
+            {
+                Panel.SetActive(true);
+                Panel2.SetActive(true);
+                panelIsClosed = false;
+            }
+            else
+            {
+                Panel.SetActive(false);
+                Panel2.SetActive(false);
+                panelIsClosed = true;
+            }
+        }
+
         //Test Exp 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -86,12 +175,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    public void AttributeModified(Attribute attribute)
     {
-        inventory.Container.Clear();
-        equipment.Container.Clear();
+        Debug.Log(string.Concat(attribute.type, " was updated! Value is now ", attribute.value.ModifiedValue));
     }
 
+    private void OnApplicationQuit()
+    {
+        inventory.Clear();
+        equipment.Clear();
+    }
 
+}
 
+[System.Serializable]
+public class Attribute
+{
+    [System.NonSerialized]
+    public PlayerMovement parent;
+    public Attributes type;
+    public ModifiableInt value;
+
+    public void SetParent(PlayerMovement _parent)
+    {
+        parent = _parent;
+        value = new ModifiableInt(AttributeModified);
+    }
+    public void AttributeModified()
+    {
+        parent.AttributeModified(this);
+    }
 }
