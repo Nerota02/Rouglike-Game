@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool panelIsClosed;
     public float moveSpeed = 5f;
     public Transform movePoint;
+    public int gold;
 
     public LayerMask whatStopsMovement;
 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
             equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
         }
+
     }
 
     public void OnBeforeSlotUpdate(InventorySlot _slot)
@@ -100,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        #region Open Inventory
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             if(panelIsClosed == true)
@@ -115,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
                 panelIsClosed = true;
             }
         }
+        #endregion
 
         //Test Exp 
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -146,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        #region Save and Load
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             inventory.Save();
@@ -158,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
             equipment.Load();
             Debug.Log("Game Loaded");
         }
-
+        #endregion
 
     }
 

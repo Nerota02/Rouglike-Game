@@ -89,4 +89,5 @@ public class ItemBuff : IModifiers
     {
         value = UnityEngine.Random.Range(min, max);
     }
+
 }

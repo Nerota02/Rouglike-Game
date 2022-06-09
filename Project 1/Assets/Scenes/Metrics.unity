@@ -5344,6 +5344,7 @@ MonoBehaviour:
   panelIsClosed: 0
   moveSpeed: 5
   movePoint: {fileID: 366049428}
+  gold: 0
   whatStopsMovement:
     serializedVersion: 2
     m_Bits: 256
